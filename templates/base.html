@@ -1,0 +1,77 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Tracker | {% block title %}{% endblock %}</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#f5f7ff', 100: '#ebf0fe', 500: '#667eea', 600: '#5a6fd6', 700: '#4c5ec0' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #fcfcfd; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        /* Smooth transitions for buttons */
+        .btn-transition { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="text-slate-900 antialiased">
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 w-full border-b border-slate-200 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-800">CGPA<span class="text-primary-500">Tracker</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    {% if user.is_authenticated %}
+                        <a href="#" class="text-sm font-medium text-slate-600 hover:text-primary-500">Dashboard</a>
+                        <a href="#" class="text-sm font-medium text-slate-600 hover:text-primary-500">History</a>
+                        <a href="{% url 'logout' %}" class="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 btn-transition">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="text-sm font-medium text-slate-600 hover:text-primary-500">Login</a>
+                        <a href="{% url 'signup' %}" class="px-4 py-2 text-sm font-semibold text-white bg-primary-500 rounded-lg hover:bg-primary-600 shadow-lg shadow-primary-500/25 btn-transition">Get Started</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 bg-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">© 2026 CGPA Tracker. Built for high achievers.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
