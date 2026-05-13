@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CGPARecord
+from .models import OsasCGPARecord
 
 # Register your models here.
-admin.site.register(CGPARecord)
+admin.site.register(OsasCGPARecord)

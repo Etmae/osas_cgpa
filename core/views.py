@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout
 
-from .models import CGPARecord
+from .models import OsasCGPARecord
 
 # Create your views here.
 
@@ -34,7 +34,7 @@ def landing(request):
 @login_required
 def home(request):
     # Fetch user history immediately for display
-    records = CGPARecord.objects.filter(user=request.user).order_by('-created_at')
+    records = OsasCGPARecord.objects.filter(user=request.user).order_by('-created_at')
     context = {"records": records}
 
     if request.method == "POST":
@@ -57,7 +57,7 @@ def home(request):
                 cgpa = round(total_credit_points / total_units, 2)
 
                 # Save the new record
-                CGPARecord.objects.create(
+                OsasCGPARecord.objects.create(
                     user=request.user,
                     semester=semester_name,
                     cgpa=cgpa,
@@ -69,7 +69,7 @@ def home(request):
                 context.update({
                     "cgpa": cgpa,
                     "result_semester": semester_name,
-                    "records": CGPARecord.objects.filter(user=request.user).order_by('-created_at')
+                    "records": OsasCGPARecord.objects.filter(user=request.user).order_by('-created_at')
                 })
 
         except (ValueError, TypeError):
