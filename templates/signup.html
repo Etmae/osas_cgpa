@@ -1,90 +1,98 @@
-<!-- templates/signup.html -->
 {% extends "base.html" %}
 
 {% block title %}Create Account | CGPA Tracker{% endblock %}
 
+{% block extra_css %}
+<style>
+    /* Mesh background to match landing and login */
+    .signup-mesh {
+        background-color: #ffffff;
+        background-image: radial-gradient(at 0% 100%, hsla(160, 100%, 98%, 1) 0, transparent 50%), 
+                          radial-gradient(at 100% 0%, hsla(140, 100%, 97%, 1) 0, transparent 50%);
+    }
+
+    .btn-transition {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="min-h-[85vh] flex flex-col justify-center py-12 px-6 lg:px-8">
+<div class="min-h-[90vh] signup-mesh flex flex-col justify-center py-12 px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <!-- Logo Icon -->
-        <div class="mx-auto w-14 h-14 bg-gradient-to-br from-primary-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl shadow-primary-500/20 mb-6">
+        <div class="mx-auto w-14 h-14 bg-primary-600 rounded-2xl flex items-center justify-center shadow-xl shadow-primary-600/20 mb-8 transform rotate-3">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
             </svg>
         </div>
-        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">
-            Get started for free
+        <h2 class="text-4xl font-black text-slate-900 tracking-tight font-cinzel">
+            Join the Suite
         </h2>
-        <p class="mt-2 text-slate-500 font-medium">
-            Join thousands of students tracking their success.
+        <p class="mt-3 text-slate-500 font-playfair italic text-lg">
+            Start tracking your academic excellence.
         </p>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-white py-10 px-8 border border-slate-200 shadow-2xl shadow-slate-200/50 rounded-[2.5rem]">
-            <form method="POST" class="space-y-5">
+        <div class="bg-white/80 backdrop-blur-xl py-10 px-8 border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] rounded-[2.5rem]">
+            <form method="POST" class="space-y-6">
                 {% csrf_token %}
                 
-                <!-- Username -->
                 <div>
-                    <label for="username" class="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Username</label>
+                    <label for="username" class="block text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-2 ml-1 font-sans">Username</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
                         <input type="text" name="username" id="username" required
-                            class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                            placeholder="Choose a unique username">
+                            class="block w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-100 text-slate-900 rounded-2xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:bg-white focus:border-primary-600 transition-all font-sans"
+                            placeholder="e.g. elijah_dev">
                     </div>
                 </div>
 
-                <!-- Password -->
                 <div>
-                    <label for="password" class="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Password</label>
+                    <label for="password" class="block text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-2 ml-1 font-sans">Password</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                             </svg>
                         </div>
                         <input type="password" name="password" id="password" required
-                            class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                            class="block w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-100 text-slate-900 rounded-2xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:bg-white focus:border-primary-600 transition-all font-sans"
                             placeholder="Create a strong password">
                     </div>
-                    <p class="mt-2 text-[11px] text-slate-400 flex items-center gap-1 ml-1 font-medium">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        Minimum 8 characters with letters & numbers
+                    <p class="mt-2 text-[10px] text-slate-400 flex items-center gap-1.5 ml-1 font-bold uppercase tracking-wider font-sans">
+                        <svg class="w-3.5 h-3.5 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        Minimum 8 characters required
                     </p>
                 </div>
 
-                <!-- Submit Button -->
                 <div class="pt-2">
                     <button type="submit" 
-                        class="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-xl shadow-primary-500/25 text-sm font-bold text-white bg-primary-500 hover:bg-primary-600 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 btn-transition">
+                        class="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-xl shadow-primary-600/20 text-sm font-bold text-white bg-primary-600 hover:bg-primary-700 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 btn-transition font-sans uppercase tracking-[0.2em]">
                         Create My Account
                     </button>
                 </div>
 
-                <!-- Footer Text -->
                 <div class="text-center pt-2">
-                    <p class="text-sm text-slate-500">
+                    <p class="text-sm text-slate-500 font-sans">
                         Already a member? 
-                        <a href="{% url 'login' %}" class="font-bold text-primary-500 hover:text-primary-600 transition-colors">
+                        <a href="{% url 'login' %}" class="font-bold text-primary-600 hover:text-primary-700 transition-colors">
                             Sign in instead
                         </a>
                     </p>
                 </div>
 
-                <!-- Error Messages -->
                 {% if error %}
                 <div class="rounded-2xl bg-red-50 p-4 border border-red-100 mt-4">
                     <div class="flex gap-3">
                         <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
                         </svg>
-                        <p class="text-xs font-bold text-red-800 uppercase tracking-tight">{{ error }}</p>
+                        <p class="text-xs font-bold text-red-800 uppercase tracking-tight font-sans">{{ error }}</p>
                     </div>
                 </div>
                 {% endif %}
@@ -92,10 +100,10 @@
         </div>
         
         <div class="mt-8 px-4 text-center">
-            <p class="text-[11px] text-slate-400 leading-relaxed font-medium uppercase tracking-wider">
-                By clicking "Create My Account", you agree to our 
-                <a href="#" class="underline hover:text-slate-600">Terms of Service</a> & 
-                <a href="#" class="underline hover:text-slate-600">Privacy Policy</a>
+            <p class="text-[10px] text-slate-400 leading-relaxed font-bold uppercase tracking-[0.15em] font-sans">
+                By joining, you agree to our 
+                <a href="#" class="text-slate-600 underline underline-offset-4 decoration-primary-600/30">Terms</a> & 
+                <a href="#" class="text-slate-600 underline underline-offset-4 decoration-primary-600/30">Privacy</a>
             </p>
         </div>
     </div>

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class CGPARecord(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    semester = models.CharField(max_length=20)
+    semester = models.CharField(max_length=50) # Increased length for flexibility
     cgpa = models.FloatField()
     total_units = models.IntegerField()
     total_credit_points = models.FloatField()

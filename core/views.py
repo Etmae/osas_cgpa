@@ -29,12 +29,17 @@ def get_grade_point(score: int) -> float:
 def landing(request):
     return render(request, "landing.html")
 
+
+
 @login_required
 def home(request):
-    context = {}
+    # Fetch user history immediately for display
+    records = CGPARecord.objects.filter(user=request.user).order_by('-created_at')
+    context = {"records": records}
 
     if request.method == "POST":
         try:
+            semester_name = request.POST.get("semester_name", "Untitled Semester")
             units = request.POST.getlist("units[]")
             scores = request.POST.getlist("scores[]")
 
@@ -42,31 +47,34 @@ def home(request):
             total_credit_points = 0
 
             for u, s in zip(units, scores):
-                u = int(u)
-                s = int(s)
-
-                total_units += u
-                total_credit_points += u * get_grade_point(s)
+                if u and s: # Ensure fields aren't empty
+                    val_u = int(u)
+                    val_s = int(s)
+                    total_units += val_u
+                    total_credit_points += val_u * get_grade_point(val_s)
             
             if total_units > 0:
                 cgpa = round(total_credit_points / total_units, 2)
 
+                # Save the new record
                 CGPARecord.objects.create(
                     user=request.user,
-                    semester="Current Semester",
+                    semester=semester_name,
                     cgpa=cgpa,
                     total_units=total_units,
                     total_credit_points=total_credit_points
                 )
 
+                # Refresh records to include the new entry
                 context.update({
                     "cgpa": cgpa,
-                    "total_units": total_units,
-                    "total_credit_points": total_credit_points
+                    "result_semester": semester_name,
+                    "records": CGPARecord.objects.filter(user=request.user).order_by('-created_at')
                 })
 
         except (ValueError, TypeError):
-            context["error"] = "Invalid input. Please ensure all fields are filled correctly."
+            context["error"] = "Invalid input. Please ensure all units and scores are numbers."
+
     return render(request, "index.html", context)
 
 

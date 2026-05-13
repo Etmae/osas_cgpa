@@ -4,11 +4,11 @@
 
 {% block extra_css %}
 <style>
-    /* Custom mesh background for the hero section */
+    /* Custom mesh background for the hero section - Updated to Mint/Emerald hues */
     .hero-mesh {
         background-color: #ffffff;
-        background-image: radial-gradient(at 0% 0%, hsla(227,100%,95%,1) 0, transparent 50%), 
-                          radial-gradient(at 100% 0%, hsla(258,100%,95%,1) 0, transparent 50%);
+        background-image: radial-gradient(at 0% 0%, hsla(160, 100%, 96%, 1) 0, transparent 50%), 
+                          radial-gradient(at 100% 0%, hsla(140, 100%, 95%, 1) 0, transparent 50%);
     }
     
     /* Floating animation for the UI mockup */
@@ -19,11 +19,11 @@
     }
     .float-ui { animation: float 6s ease-in-out infinite; }
 
-    /* Custom checkmark list styling */
+    /* Custom checkmark list styling - Updated to primary-600 hex */
     .feature-list-item::before {
         content: "✓";
         margin-right: 12px;
-        color: #667eea;
+        color: #059669;
         font-weight: bold;
     }
 </style>
@@ -31,99 +31,90 @@
 
 {% block content %}
 <div class="hero-mesh min-h-screen">
-    <!-- Section 1: Split Hero -->
     <section class="max-w-7xl mx-auto px-6 pt-16 pb-24 lg:pt-32">
         <div class="flex flex-col lg:flex-row items-center gap-16">
             
-            <!-- Left Side: Copy -->
             <div class="flex-1 text-left">
-                <div class="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1 mb-6">
-                    <span class="flex h-2 w-2 rounded-full bg-indigo-600"></span>
-                    <span class="text-indigo-700 text-xs font-bold uppercase tracking-widest">Designed for Students</span>
+                <div class="inline-flex items-center space-x-2 bg-primary-50 border border-primary-100 rounded-full px-4 py-1 mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-primary-600"></span>
+                    <span class="text-primary-700 text-xs font-bold uppercase tracking-widest font-sans">Designed for Students</span>
                 </div>
                 
-                <h1 class="text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-6">
+                <h1 class="text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-6 font-cinzel">
                     Manage your <br>
-                    <span class="text-primary-500">Academic Future.</span>
+                    <span class="text-primary-600">Academic Future.</span>
                 </h1>
                 
-                <p class="text-xl text-slate-600 mb-10 max-w-lg leading-relaxed">
+                <p class="text-xl text-slate-600 mb-10 max-w-lg leading-relaxed font-playfair font-medium">
                     A streamlined, secure platform to calculate your GPA, track semester trends, and generate official performance reports in seconds.
                 </p>
                 
                 <div class="flex flex-wrap gap-4">
-                    <a href="{% url 'signup' %}" class="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg">
+                    <a href="{% url 'signup' %}" class="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg font-sans">
                         Get Started — It's Free
                     </a>
-                    <a href="{% url 'login' %}" class="px-8 py-4 bg-white text-slate-600 border border-slate-200 rounded-xl font-bold hover:border-slate-400 transition-all">
+                    <a href="{% url 'login' %}" class="px-8 py-4 bg-white text-slate-600 border border-slate-200 rounded-xl font-bold hover:border-primary-300 hover:text-primary-700 transition-all font-sans">
                         Existing User Login
                     </a>
                 </div>
 
-                <!-- Small Trust Factor -->
                 <div class="mt-12 pt-8 border-t border-slate-200/60">
-                    <p class="text-sm text-slate-400 font-medium mb-4 uppercase tracking-widest">grading systems</p>
-                    <div class="flex gap-8 opacity-50 grayscale hover:grayscale-0 transition-all cursor-default">
-                        <span class="font-bold text-lg text-slate-800"></span>
+                    <p class="text-sm text-slate-400 font-medium mb-4 uppercase tracking-widest font-sans">grading systems</p>
+                    <div class="flex gap-8 opacity-50 grayscale hover:grayscale-0 transition-all cursor-default font-cinzel">
+                        <span class="font-bold text-lg text-slate-800">4.0 Scale</span>
                         <span class="font-bold text-lg text-slate-800">5.0 Scale</span>
-                        <span class="font-bold text-lg text-slate-800">7</span>
+                        <span class="font-bold text-lg text-slate-800">7.0 Scale</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Side: UI Mockup Visual -->
             <div class="flex-1 w-full lg:w-auto relative">
                 <div class="float-ui relative z-10 bg-white p-4 rounded-3xl shadow-2xl border border-slate-100">
-                    <!-- Fake App Header -->
                     <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
                         <div class="flex justify-between items-end">
                             <div>
-                                <p class="text-sm text-slate-500 font-medium">Current CGPA</p>
-                                <h3 class="text-4xl font-black text-slate-900">4.82</h3>
+                                <p class="text-sm text-slate-500 font-medium font-sans">Current CGPA</p>
+                                <h3 class="text-4xl font-black text-slate-900 font-cinzel">4.82</h3>
                             </div>
                             <div class="text-right">
-                                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded">+0.12 this term</span>
+                                <span class="bg-primary-100 text-primary-700 text-xs font-bold px-2 py-1 rounded font-sans">+0.12 this term</span>
                             </div>
                         </div>
-                        <!-- Fake Progress Bar -->
                         <div class="mt-6 h-3 w-full bg-slate-200 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary-500 w-[92%] rounded-full"></div>
+                            <div class="h-full bg-primary-600 w-[92%] rounded-full"></div>
                         </div>
                     </div>
                     
-                    <!-- Fake List -->
-                    <div class="mt-4 space-y-3">
+                    <div class="mt-4 space-y-3 font-sans">
                         <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-xl transition-colors">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-xs">CS</div>
+                                <div class="w-8 h-8 bg-primary-50 rounded-lg flex items-center justify-center text-primary-700 font-bold text-xs border border-primary-100">CS</div>
                                 <span class="font-semibold text-slate-700">Data Structures</span>
                             </div>
-                            <span class="text-slate-900 font-bold">A</span>
+                            <span class="text-slate-900 font-bold font-cinzel text-lg">A</span>
                         </div>
                         <div class="flex justify-between items-center p-3 hover:bg-slate-50 rounded-xl transition-colors">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold text-xs">MA</div>
+                                <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600 font-bold text-xs border border-slate-200">MA</div>
                                 <span class="font-semibold text-slate-700">Calculus II</span>
                             </div>
-                            <span class="text-slate-900 font-bold">B+</span>
+                            <span class="text-slate-900 font-bold font-cinzel text-lg">B+</span>
                         </div>
                     </div>
                 </div>
-                <!-- Background Accent Circle -->
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-indigo-50 rounded-full -z-0"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary-50/50 rounded-full -z-0"></div>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Detailed Workflow -->
     <section class="bg-white py-24 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div>
-                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Built for the <br>modern student.</h2>
-                    <p class="text-lg text-slate-500 mb-8">Whether you're aiming for the Dean's list or just keeping track of your progress, CGPA Tracker provides the tools you need.</p>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6 font-cinzel">Built for the <br>modern student.</h2>
+                    <p class="text-lg text-slate-500 mb-8 font-playfair">Whether you're aiming for the Dean's list or just keeping track of your progress, CGPA Tracker provides the tools you need.</p>
                     
-                    <ul class="space-y-4">
+                    <ul class="space-y-4 font-sans">
                         <li class="feature-list-item text-slate-700 font-medium">Automated grade-point conversion based on your university scale.</li>
                         <li class="feature-list-item text-slate-700 font-medium">Exportable PDF transcripts for applications and internships.</li>
                         <li class="feature-list-item text-slate-700 font-medium">Secure cloud storage — access your records from any device.</li>
@@ -131,22 +122,22 @@
                     </ul>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-4 font-sans">
                     <div class="aspect-square bg-slate-50 rounded-3xl p-8 flex flex-col justify-end border border-slate-100">
-                        <span class="text-3xl font-bold text-slate-900 mb-2">99%</span>
-                        <p class="text-sm text-slate-500">Calculation Accuracy</p>
+                        <span class="text-4xl font-bold text-slate-900 mb-2 font-cinzel">99%</span>
+                        <p class="text-sm text-slate-500 font-medium">Calculation Accuracy</p>
                     </div>
-                    <div class="aspect-square bg-indigo-600 rounded-3xl p-8 flex flex-col justify-end text-white shadow-xl shadow-indigo-200">
-                        <span class="text-3xl font-bold mb-2">Instant</span>
-                        <p class="text-indigo-100 text-sm">PDF Generation</p>
+                    <div class="aspect-square bg-primary-600 rounded-3xl p-8 flex flex-col justify-end text-white shadow-xl shadow-primary-600/20">
+                        <span class="text-3xl font-bold mb-2 font-cinzel">Instant</span>
+                        <p class="text-primary-100 text-sm font-medium">PDF Generation</p>
                     </div>
-                    <div class="aspect-square bg-slate-900 rounded-3xl p-8 flex flex-col justify-end text-white">
-                        <span class="text-3xl font-bold mb-2">End-to-End</span>
-                        <p class="text-slate-400 text-sm">Data Encryption</p>
+                    <div class="aspect-square bg-slate-900 rounded-3xl p-8 flex flex-col justify-end text-white shadow-xl shadow-slate-900/20">
+                        <span class="text-3xl font-bold mb-2 font-cinzel">Secure</span>
+                        <p class="text-slate-400 text-sm font-medium">Data Encryption</p>
                     </div>
                     <div class="aspect-square bg-slate-50 rounded-3xl p-8 flex flex-col justify-end border border-slate-100">
-                        <span class="text-3xl font-bold text-slate-900 mb-2">∞</span>
-                        <p class="text-sm text-slate-500">Historical Semesters</p>
+                        <span class="text-4xl font-bold text-slate-900 mb-2 font-cinzel">∞</span>
+                        <p class="text-sm text-slate-500 font-medium">Historical Semesters</p>
                     </div>
                 </div>
             </div>
